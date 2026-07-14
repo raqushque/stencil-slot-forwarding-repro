@@ -1,0 +1,26 @@
+@use '../../../common/styles' as common;
+
+.cmp-a-outer {
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  width: 680px;
+  min-height: 100px;
+  padding: 8px;
+
+  background-color: #b9e1ff;
+}
+
+.cmp-a-named-slot {
+  @include common.slot(#a08ef8, 'Named Slot');
+}
+
+.cmp-a-default-slot {
+  @include common.slot(#a0fadf, 'Default Slot');
+}
+
+.item-a {
+  @include common.item($color: #81af7a);
+}

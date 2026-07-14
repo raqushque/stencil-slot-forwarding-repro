@@ -1,0 +1,80 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/slots.esm.js"></script>
+    <script nomodule src="/build/slots.js"></script>
+  </head>
+  <style>
+    .item-programmatic {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
+
+      width: 80px;
+      height: 60px;
+
+      opacity: 0.8;
+      background: #77bf1d;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <slot-test-a class="test-component">
+        <span class="item-a">Cmp A<br/>Default<br/>External</span>
+        <span slot="named" class="item-a">
+            Cmp A<br/>Named<br/>External
+          </span>
+      </slot-test-a>
+      <slot-test-b class="test-component">
+        <span class="item-b">Cmp B<br/>Default<br/>External</span>
+        <span slot="named" class="item-b">
+            Cmp B<br/>Named<br/>External
+          </span>
+      </slot-test-b>
+      <slot-test-c class="test-component">
+        <span class="item-c">Cmp C<br/>Default<br/>External</span>
+        <span slot="named" class="item-c">
+            Cmp C<br/>Named<br/>External
+          </span>
+      </slot-test-c>
+    </div>
+    <button type="button" onclick="toggleProps()">Toggle Internal Conditional Content</button>
+    <button type="button" onclick="toggleExtProps()">Toggle Externally Added Content</button>
+  <script>
+    let extShown = false;
+    const elms = [...Array(3)].map(_ => {
+      const el = document.createElement('span');
+      el.innerHTML = 'Named<br/>External';
+      el.className = 'item-programmatic';
+      el.slot = 'named';
+      return el;
+    })
+
+    function toggleProps() {
+      document.querySelectorAll('.test-component').forEach(cmp => cmp.toggleContent?.())
+    }
+
+    function toggleExtProps() {
+      if (extShown) {
+        elms.forEach(el => el.remove());
+      } else {
+        document.querySelectorAll('.test-component').forEach((cmp, idx) => cmp.appendChild(elms[idx]));
+      }
+      extShown = !extShown;
+    }
+  </script>
+  </body>
+</html>

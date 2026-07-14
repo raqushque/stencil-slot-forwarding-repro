@@ -1,0 +1,5 @@
+@use '../../../common/styles' as common;
+
+.item-c {
+  @include common.item($color: #d87474);
+}
