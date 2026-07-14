@@ -4,9 +4,15 @@ When passing a named slot content through multiple components, content gets slot
 
 Bug was not present in 4.40.1.
 
+### Running the demo
+
+`npm install`
+
+`npm run start`
+
 ### How this demo works
 
-Demo has 3 components, with different nesting depth. Every component has `named` slot as well as default slot.
+Demo has 3 `shadow: false` components, with different nesting depth. Every component has `named` slot as well as default slot.
 
 `Component B` wraps around `Component A`, and `Component C` wraps around `Component B`.
 
